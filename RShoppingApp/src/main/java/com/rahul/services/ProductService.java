@@ -50,6 +50,7 @@ public class ProductService {
  
  public String deleteProduct(Long id) throws ProductException { 
 	Product product=  getProductById(id);
-  productRepository.delete(product);
+	productRepository.delete(product);
+	return "Product with Id:-"+id+" is deleted";
  } 
 } 
