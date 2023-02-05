@@ -9,7 +9,7 @@ import com.rahul.model.Cart;
 import com.rahul.repository.CartRepository;
 
 @Service 
-public class CartServiceImpl { 
+public class CartServiceImpl implements CartService{ 
  
  @Autowired 
  private CartRepository cartRepository; 
