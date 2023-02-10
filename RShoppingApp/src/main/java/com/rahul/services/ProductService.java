@@ -2,17 +2,19 @@ package com.rahul.services;
 
 import java.util.List;
 
-import com.rahul.model.Payment;
+import com.rahul.execptions.ProductException;
+import com.rahul.model.Product;
 
 public interface ProductService {
 
-	public List<Payment> getAllPayments();
+	public List<Product> getAllProducts() throws ProductException;
 	
-	public Payment getPaymentById(Long id);
+	public Product getProductById(Long id) throws ProductException;
 	
-	public Payment createPayment(Payment payment);
 	
-	public Payment updatePayment(Long id, Payment payment);
+	public Product createProduct(Product product);
 	
-	public void deletePayment(Long id);
+	public Product updateProduct(Long id, Product product) throws ProductException;
+	
+	public String deleteProduct(Long id) throws ProductException;
 }
