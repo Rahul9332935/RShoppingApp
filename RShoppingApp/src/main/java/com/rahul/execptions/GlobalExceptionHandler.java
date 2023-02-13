@@ -79,9 +79,19 @@ public class GlobalExceptionHandler {
 		
 	}
 	
-	
-
-	
+	@ExceptionHandler(CategoryException.class)
+	public ResponseEntity<ErrorDetails> noHandlerFoundExceptionHandler(CategoryException cat, WebRequest wR){
+		
+		
+		ErrorDetails errorDetails = new ErrorDetails();
+		
+		errorDetails.setTimeStamp(LocalDateTime.now());
+		errorDetails.setMessage(cat.getMessage());
+		errorDetails.setDetails(wR.getDescription(false));
+		
+		return new ResponseEntity<ErrorDetails>(errorDetails,HttpStatus.BAD_REQUEST);
+		
+	}
 
 	@ExceptionHandler(NoHandlerFoundException.class)
 	public ResponseEntity<ErrorDetails> noHandlerFoundExceptionHandler(NoHandlerFoundException nhfe, WebRequest wR){

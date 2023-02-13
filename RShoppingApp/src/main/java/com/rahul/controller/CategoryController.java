@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rahul.execptions.CategoryException;
 import com.rahul.model.Category;
 import com.rahul.services.CategoryService;
 
@@ -21,12 +22,12 @@ public class CategoryController {
  private CategoryService categoryService; 
  
  @GetMapping("/categories") 
- public List<Category> getAllCategories() { 
+ public List<Category> getAllCategories() throws CategoryException { 
   return categoryService.getAllCategories(); 
  } 
  
  @GetMapping("/categories/{id}") 
- public Category getCategoryById(@PathVariable Long id) { 
+ public Category getCategoryById(@PathVariable Long id) throws CategoryException { 
   return categoryService.getCategoryById(id); 
  } 
  
@@ -36,12 +37,12 @@ public class CategoryController {
  } 
  
  @PutMapping("/categories/{id}") 
- public Category updateCategory(@PathVariable Long id, @RequestBody Category category) { 
+ public Category updateCategory(@PathVariable Long id, @RequestBody Category category) throws CategoryException { 
   return categoryService.updateCategory(id, category); 
  } 
  
  @DeleteMapping("/categories/{id}") 
- public void deleteCategory(@PathVariable Long id) { 
+ public void deleteCategory(@PathVariable Long id) throws CategoryException { 
   categoryService.deleteCategory(id); 
  } 
 }
