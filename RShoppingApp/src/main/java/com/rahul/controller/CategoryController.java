@@ -3,6 +3,9 @@ package com.rahul.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,31 +21,31 @@ import com.rahul.services.CategoryService;
 @RestController 
 public class CategoryController { 
  
- @Autowired 
- private CategoryService categoryService; 
+	@Autowired 
+ 	private CategoryService categoryService; 
  
- @GetMapping("/categories") 
- public List<Category> getAllCategories() throws CategoryException { 
-  return categoryService.getAllCategories(); 
- } 
+	@GetMapping("/categories") 
+	public ResponseEntity<List<Category>> getAllCategories() throws CategoryException { 
+		return new ResponseEntity<>( categoryService.getAllCategories(), HttpStatus.OK); 
+	} 
  
- @GetMapping("/categories/{id}") 
- public Category getCategoryById(@PathVariable Long id) throws CategoryException { 
-  return categoryService.getCategoryById(id); 
- } 
+	@GetMapping("/categories/{id}") 
+	public ResponseEntity<Category> getCategoryById(@PathVariable Long id) throws CategoryException { 
+		return new ResponseEntity<>( categoryService.getCategoryById(id), HttpStatus.OK); 
+	} 
  
- @PostMapping("/categories") 
- public Category createCategory(@RequestBody Category category) { 
-  return categoryService.createCategory(category); 
- } 
+	@PostMapping("/categories") 
+	public ResponseEntity<Category> createCategory(@RequestBody Category category) { 
+		return new ResponseEntity<>(categoryService.createCategory(category), HttpStatus.CREATED); 
+	} 
  
- @PutMapping("/categories/{id}") 
- public Category updateCategory(@PathVariable Long id, @RequestBody Category category) throws CategoryException { 
-  return categoryService.updateCategory(id, category); 
- } 
- 
- @DeleteMapping("/categories/{id}") 
- public void deleteCategory(@PathVariable Long id) throws CategoryException { 
-  categoryService.deleteCategory(id); 
- } 
+	@PutMapping("/categories/{id}") 
+	public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category category) throws CategoryException { 
+		return new ResponseEntity<>( categoryService.updateCategory(id, category), HttpStatus.ACCEPTED); 
+	} 
+	
+	@DeleteMapping("/categories/{id}") 
+	public void deleteCategory(@PathVariable Long id) throws CategoryException { 
+		categoryService.deleteCategory(id); 
+	} 
 }

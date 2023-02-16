@@ -11,7 +11,7 @@ public class CartException extends Exception {
 	}
 	
 	public CartException(String message) {
-		super(message)
+		super(message);
 		// TODO Auto-generated constructor stub
 	}
 
