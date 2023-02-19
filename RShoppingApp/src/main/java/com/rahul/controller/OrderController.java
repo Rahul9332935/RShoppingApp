@@ -36,7 +36,7 @@ public class OrderController {
 	
 	public ResponseEntity<Orders> updateOrder(Long id, Orders order) throws OrderException {
 		Orders order1= orderService.updateOrder(id, order);
-		return ew ResponseEntity<Orders>(order1, HttpStatus.ACCEPTED);
+		return new ResponseEntity<Orders>(order1, HttpStatus.ACCEPTED);
 	}
 
 	
